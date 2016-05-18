@@ -1,11 +1,13 @@
 #!/bin/bash
 #Name: Bash Tutorial 6 Arrays
 #Description: Tutorial shows how to declare and use Numeric and Associative Arrays
+#Video: 
 
 
 #Global array
 declare -A AssociativeArray #Array index is in named form
 declare -a NumericArray #Array index is in numeric form
+
 
 #Local array
 function Foo() {
@@ -17,14 +19,16 @@ function Foo() {
   LocalArray[9]=15  #No need to be consecutive or a string
   
   #Read specific values
-  echo "LocalArray[0] LocalArray[1]" #Hi There
+  echo "${LocalArray[0]} ${LocalArray[1]}" #Hi There
   
   #Read entire array
-  echo "${LocalArray[@]}"
+  echo "${LocalArray[@]}" #Hi There 15
 }
 
 #Call function Foo
 Foo
+echo "Local Array ${LocalArray[@]}" #Nothing, as the array doesn't exist outside of Function Foo
+echo
 
 #Set values in Associative Array
 AssociativeArray[Var1]="Var1"
