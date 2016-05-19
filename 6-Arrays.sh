@@ -1,7 +1,7 @@
 #!/bin/bash
 #Name: Bash Tutorial 6 Arrays
 #Description: Tutorial shows how to declare and use Numeric and Associative Arrays
-#Video: 
+#Video: https://youtu.be/FBv7aEn2Cik
 
 
 #Global array
