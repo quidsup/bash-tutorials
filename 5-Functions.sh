@@ -1,5 +1,6 @@
 #!/bin/bash
-#Bash Tutorial 4: Loops
+#Bash Tutorial 5: Functions
+#Description: How to use Functions in bash, including parsing variables, and using return values
 #Written by QuidsUp
 #Use with Youtube Video: https://youtu.be/kiEbj_DHB4k
 
