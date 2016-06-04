@@ -1,0 +1,11 @@
+Read all files in a folder, inc certain types
+
+Menus
+
+Error Exit Codes, function return values
+
+Find a file
+
+Read variables from a file
+
+Package manager
