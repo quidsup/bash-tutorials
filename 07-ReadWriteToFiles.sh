@@ -1,6 +1,6 @@
 #!/bin/bash
 #Name: Bash Tutorial 7 Reading / Writing to Files
-#Description: Tutorial shows how to declare and use Numeric and Associative Arrays
+#Description: Tutorial shows how to Read and Write to Files
 #Video: 
 
 File="/tmp/test.txt"
@@ -33,7 +33,8 @@ TmpWrite+=("All work and no play makes Jack a dull boy")
 TmpWrite+=("All work and no play makes Jack a dull boy")
 TmpWrite+=("All work and no play makes Jack a dull boy")
 TmpWrite+=("All work and no play makes Jack a dull boy")
-printf "%s\n" "${TmpWrite[@]}" > $File
+
+
 echo "How does it look with the Array written to file?"
 cat $File
 
@@ -100,31 +101,29 @@ BlockList_AdBlockManager=0
 BlockList_EasyList=0
 
 while IFS='= ' read -r Key Value; do
-  if [[ ! $Key =~ ^\ *# ]] && [[ -n $Key ]]; then   #Does Line exist
-    Value="${Value%%\#*}"                           #Del in line right comments
-    Value="${Value%%*( )}"                          #Del trailing spaces
-    Value="${Value%\"*}"                            #Del opening string quotes 
-    Value="${Value#\"*}"                            #Del closing string quotes 
+  Value="${Value%%\#*}"                           #Del in line right comments
+  Value="${Value%%*( )}"                          #Del trailing spaces
+  Value="${Value%\"*}"                            #Del opening string quotes 
+  Value="${Value#\"*}"                            #Del closing string quotes 
         
-    case "$Key" in
-      BlockList_NoTrack)
-        FilterInt "$Key" 0 1 1
-        BlockList_NoTrack=$?
-      ;;
-      BlockList_TLD)
-        FilterInt "$Key" 0 1 1
-        BlockList_TLD=$?
-      ;;
-      BlockList_AdBlockManager)
-        FilterInt "$Key" 0 1 0
-        BlockList_AdBlockManager=$?
-      ;;
-      BlockList_EasyList)
-        FilterInt "$Key" 0 1 0
-        BlockList_EasyList=$?
-      ;;
-    esac
-  fi
+  case "$Key" in
+    BlockList_NoTrack)
+      FilterInt "$Key" 0 1 1
+      BlockList_NoTrack=$?
+    ;;
+    BlockList_TLD)
+      FilterInt "$Key" 0 1 1
+      BlockList_TLD=$?
+    ;;
+    BlockList_AdBlockManager)
+      FilterInt "$Key" 0 1 0
+      BlockList_AdBlockManager=$?
+    ;;
+    BlockList_EasyList)
+      FilterInt "$Key" 0 1 0
+      BlockList_EasyList=$?
+    ;;
+  esac
 done < $File
 
 echo "BlockList_NoTrack = $BlockList_NoTrack"                #1
@@ -141,3 +140,4 @@ else
 fi
 echo "Has value of BlockList_NoTrack changed to zero?"
 cat $File
+
