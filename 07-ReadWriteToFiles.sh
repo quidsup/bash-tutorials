@@ -1,5 +1,5 @@
 #!/bin/bash
-#Name: Bash Tutorial 6 Reading / Writing to Files
+#Name: Bash Tutorial 7 Reading / Writing to Files
 #Description: Tutorial shows how to declare and use Numeric and Associative Arrays
 #Video: 
 
@@ -48,11 +48,12 @@ Var1="Hello World"
 echo "Var1 = $Var1" > $File
 Var1=""
 
-Var1=$(cat $File | grep Var1 | tr -s " " | cut -d "=" -f2) #Naughty using grep and cat
+Var1=$(grep Var1 "$File" | cut -d "=" -f2 | xargs) 
 echo "Var1 = $Var1"     #Hello World
+#Cut -delimeter "=" and take field 2
+#xargs is used to Trim whitespace
 #This method can be extremally dangerous, since we are trusting user input.
 #Never trust user input!!!
-
 
 #Reading all lines of a file
 cat /dev/null > $File   #Zero out file
@@ -132,9 +133,8 @@ echo "BlockList_AdBlockManager = $BlockList_AdBlockManager"  #0
 echo "BlockList_EasyList = $BlockList_EasyList"              #0  (3 is outside of range)
 
 
-
 #Changing a value in a file
-if [[ $(grep BlockList_NoTrack $File) == "" ]]; then
+if [[ $(grep BlockList_NoTrack "$File") == "" ]]; then
   echo "BlockList_NoTrack = 0" | sudo tee -a $File
 else
   sed -i "s/^\(BlockList_NoTrack *= *\).*/\10/" $File
