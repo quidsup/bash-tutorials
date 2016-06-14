@@ -1,10 +1,9 @@
 #!/bin/bash
 #Name: Bash Tutorial 7 Reading / Writing to Files
-#Description: Tutorial shows how to Read and Write to Files
-#Video: 
+#Description: Tutorial shows how to Read, Write and Modify data in Files
+#Video: https://youtu.be/yo2i7UdNmiY
 
 File="/tmp/test.txt"
-
 
 #Simple writing to file:
 echo "Clear File" > $File
@@ -34,10 +33,8 @@ TmpWrite+=("All work and no play makes Jack a dull boy")
 TmpWrite+=("All work and no play makes Jack a dull boy")
 TmpWrite+=("All work and no play makes Jack a dull boy")
 
-
 echo "How does it look with the Array written to file?"
 cat $File
-
 
 
 #Simple reading of a single value
@@ -55,6 +52,7 @@ echo "Var1 = $Var1"     #Hello World
 #xargs is used to Trim whitespace
 #This method can be extremally dangerous, since we are trusting user input.
 #Never trust user input!!!
+
 
 #Reading all lines of a file
 cat /dev/null > $File   #Zero out file
@@ -108,19 +106,19 @@ while IFS='= ' read -r Key Value; do
         
   case "$Key" in
     BlockList_NoTrack)
-      FilterInt "$Key" 0 1 1
+      FilterInt "$Value" 0 1 1
       BlockList_NoTrack=$?
     ;;
     BlockList_TLD)
-      FilterInt "$Key" 0 1 1
+      FilterInt "$Value" 0 1 0
       BlockList_TLD=$?
     ;;
     BlockList_AdBlockManager)
-      FilterInt "$Key" 0 1 0
+      FilterInt "$Value" 0 4 0
       BlockList_AdBlockManager=$?
     ;;
     BlockList_EasyList)
-      FilterInt "$Key" 0 1 0
+      FilterInt "$Value" 0 2 0
       BlockList_EasyList=$?
     ;;
   esac
@@ -140,4 +138,3 @@ else
 fi
 echo "Has value of BlockList_NoTrack changed to zero?"
 cat $File
-
